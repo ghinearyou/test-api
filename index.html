@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+  <script src='main.js'></script>
+</head>
+<body>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <table id="data">
+
+  </table>
+</body>
+</html>
+
+<script>
+  fetch("http://localhost:3000/list", {
+    method: 'GET',
+    // headers: {
+    //   'cache-control': 'no-cache',
+    //   'Access-Control-Allow-Origin': '*',
+    //   'Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'
+    // }
+  }).then(
+  res => {
+    res.json().then(
+      data => {
+        console.log(data);
+        if (data.length > 0) {
+
+          var temp = "";
+          data.forEach((itemData) => {
+            temp += "<tr>";
+            temp += "<td>" + itemData.id + "</td>";
+            temp += "<td>" + itemData.name + "</td>";
+            temp += "<td>" + itemData.email + "</td></tr>";
+            // temp += "<button>" + "EDIT" + "</button>";
+          });
+
+          document.getElementById('data').innerHTML = temp;
+          // document.getElementById('data').innerText = temp;
+        }
+      }
+    )
+  }
+  )
+</script>
