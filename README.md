@@ -1,0 +1,3 @@
+- Adjust config/config.json
+- npx sequelize db:migrate
+- npm start
